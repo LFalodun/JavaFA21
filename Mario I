@@ -1,0 +1,34 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner Mario = new Scanner(System.in);
+        System.out.println("How tall should the pyramid be using numbers 1-8 (1 being shortest and 8 being tallest)");
+        while (!Mario.hasNextInt()) {
+            Mario.next();
+        }
+        int height = Mario.nextInt();
+        while (1 >= height || height > 8) {
+            System.out.println("How tall should the pyramid be using numbers 1-8 (1 being shortest and 8 being tallest)");
+            while (!Mario.hasNextInt()) {
+                Mario.next();
+            }
+            height = Mario.nextInt();
+        }
+        System.out.println("height: " + height);
+
+        for (int line = 0; line < height; line++) {
+            for (int col = 1; col < height - line; col++) {
+                System.out.print(" ");
+            }
+            for (int hashtag = 0; hashtag <= line; hashtag++) {
+                System.out.print("#");
+            }
+            System.out.println(" ");
+            }
+        }
+    }
+
