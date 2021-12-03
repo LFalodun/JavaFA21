@@ -1,0 +1,49 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner Readability = new Scanner(System.in);
+        System.out.println("Text: ");
+        // Can this be considered get_string? I tried getString() and it didn't work out for me
+        String text = Readability.nextLine();
+        int letters;
+        letters = 0;
+        int words;
+        words = 1;
+        for (int l = 0; l < text.length(); l++) {
+            if (Character.isLetter(text.charAt(l)))
+                letters++;
+        }
+        for (int l = 0; l < text.length() - 1; l++) {
+            if (!(!(text.charAt(l) == ' ') || (text.charAt(l + 1)) == ' ')) {
+                words++;
+            }
+        }
+        int sentences;
+        sentences = text.split("!.;<:=?/',").length;
+        System.out.println(letters + " - Letters ");
+        System.out.println(words + " - Words ");
+        System.out.println(sentences + " - Sentences ");
+
+        double L = 1.0 * letters / words * 100;
+        double S= 1.0 * sentences / words * 100;
+
+
+        double rlevel = Math.floor(0.0588 * L - 0.296 * S - 15.8);
+
+        if (rlevel < 1) {
+            System.out.println(" Before Grade 1");
+        }
+           else if (rlevel > 15) {
+                System.out.println("Grade 16+") ;
+            } else {
+                System.out.println("Grade: " + rlevel);
+            }
+
+        }
+
+    }
+
