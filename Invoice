@@ -1,0 +1,50 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+
+        ArrayList<String> product = new ArrayList<String>();
+        ArrayList<Double> price = new ArrayList<Double>();
+
+        product.add("Bison Sweater");
+        price.add(55.99);
+        product.add("Bison Tee");
+        price.add(14.99);
+        product.add("Bison Hoodie");
+        price.add(23.99);
+        product.add("Bison Bumper sticker");
+        price.add(4.99);
+
+        ArrayList<String> purchased = new ArrayList<String>();
+        ArrayList<Double> cost = new ArrayList<Double>();
+
+        String answer;
+        Scanner Invoice = new Scanner(System.in);
+        String choice;
+        double totalcost = 0.0;
+        int a = -1;
+        do {
+            System.out.println("What do you want to buy? ");
+            choice = Invoice.nextLine();
+            purchased.add(choice);
+            for (int i = product.size() - 1; i >= 0; i--) {
+                if (!choice.equals(product.get(i))) {
+                    continue;
+                }
+                i = i;
+            }
+            cost.add(price.get(a));
+        } while (!choice.equalsIgnoreCase("999"));
+
+        for (int i = purchased.size() - 2; i >= 0; i--) {
+            System.out.println("Total Purchased " + purchased.get(i));
+            totalcost += cost.get(i);
+        }
+
+        System.out.println("Total : " + totalcost);
+
+    }
+}
