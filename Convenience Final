@@ -1,0 +1,109 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        ArrayList<String> Product = new ArrayList<String>();
+        ArrayList<Double> Price = new ArrayList<Double>();
+        ArrayList<String> CustomerOrder = new ArrayList<String>();
+        ArrayList<Integer> Quantity = new ArrayList<Integer>();
+
+        System.out.println("Welcome! Please look at the displayed items.. ");
+
+        Product.add("Red Hot Spicy Doritos");
+        Price.add(2.99);
+        Product.add("Cool Ranch Doritos");
+        Price.add(2.99);
+        Product.add("Coke");
+        Price.add(0.99);
+        Product.add("Diet Coke");
+        Price.add(0.99);
+        Product.add("Pepsi");
+        Price.add(0.99);
+        Product.add("Five Hour Energy");
+        Price.add(3.99);
+        Product.add("Sunflower Seeds");
+        Price.add(0.99);
+        Product.add("Peanuts.");
+        Price.add(0.99);
+        Product.add("MacBook Charger");
+        Price.add(120.00);
+        Product.add("Dell Charger");
+        Price.add(50.00);
+
+        System.out.println("Welcome! Please look at the displayed items.. ");
+
+        System.out.println(" ");
+
+        System.out.println("\n1 Red Hot Spicy Doritos" +
+                " \n2 Cool Ranch Doritos" +
+                " \n3 Coke" +
+                " \n4 Diet Coke" +
+                " \n5 Pepsi" +
+                " \n6 Five Hour Energy" +
+                " \n7 Sunflower Seeds" +
+                " \n8 Peanuts" +
+                " \n9 MacBook Charger" +
+                " \n10 Dell Charger");
+
+        System.out.println(" ");
+
+        Scanner Selection = new Scanner(System.in);
+        String Input;
+        StringBuilder Output = new StringBuilder();
+        double TotalAmount;
+        double GrandTotal = 0;
+
+        System.out.println("Enter your first name or exit if you wish to exit");
+        while (!(Input = Selection.nextLine()).equalsIgnoreCase("exit")) {
+            Output.append(Input);
+            TotalAmount = 0;
+            do {
+                System.out.println("Enter the item number(s) and type 999 when finished ");
+                Input = Selection.nextLine();
+                for (String prod : Product) {
+                    if (Integer.parseInt(Input) == (Product.indexOf(prod))) {
+                        Product.get(Product.indexOf(prod));
+                        TotalAmount += Price.get(Product.indexOf(prod));
+                        String Item = Product.get(Integer.parseInt(Input));
+                        Output.append("\n").append(Item);
+                        if (!CustomerOrder.contains(Input)) {
+                            CustomerOrder.add(Input);
+                            Quantity.add(1);
+                        } else {
+                            int index = CustomerOrder.indexOf(Input);
+                            Quantity.set(index,
+                                    Quantity.get(index) + 1);
+                        }
+                        break;
+                    }
+                }
+            } while ((!"999".equalsIgnoreCase(Input)));
+            Output.append(" \n \t\t\t").append(TotalAmount).append("\n");
+            GrandTotal += TotalAmount;
+
+            System.out.println("Enter the name of the next customer if purchase was during store hours.");
+            System.out.println("Press close if store is closed");
+        }
+        System.out.println("The Store is now closed ");
+
+        System.out.println("\n" + "Receipts per Customer Today:  \n  " + Output);
+
+        System.out.println("Total Items Sold Today: ");
+        System.out.println(" ");
+
+        for (int i = 0, customerOrderSize = CustomerOrder.size(); i < customerOrderSize; i++) {
+            String TotalItems = CustomerOrder.get(i);
+
+            System.out.println("Item Number " + TotalItems + ":" + " [" + Quantity.get(CustomerOrder.indexOf(TotalItems)) + "]");
+
+            System.out.println(" ");
+
+            System.out.println("Grand Total: $" + GrandTotal);
+
+        }
+    }
